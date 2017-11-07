@@ -51,7 +51,7 @@ h1 {
     margin: 0 0 3em;
 }
 
-.deck .card {
+.deck  .card {
     height: 125px;
     width: 125px;
     background: #2e3d49;
@@ -63,12 +63,16 @@ h1 {
     justify-content: center;
     align-items: center;
     box-shadow: 5px 2px 20px 0 rgba(46, 61, 73, 0.5);
+    transition: -webkit-transform .5s linear 0s;
+    transform:  rotateY(0);
+
 }
 
 .deck .card.open {
-    transform: rotateY(0);
+    transform: rotateY(-180deg);
     background: #02b3e4;
     cursor: default;
+    transition: -webkit-transform .5s linear 0s;
 }
 
 .deck .card.show {
