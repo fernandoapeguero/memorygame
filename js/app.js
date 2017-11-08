@@ -82,8 +82,8 @@ function matchCard(e) {
                 cardHolderTwo = "";
                 cardOne = "";
                 cardTwo = "";
-                if(winnerCounter >= 8){
-
+                if(winnerCounter >= 1){
+                  $('#myModal').modal('show');
                 }
         } else {
              console.log('dont match');
