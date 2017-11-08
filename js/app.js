@@ -49,7 +49,10 @@ let cardHolderTwo = "";
 
 function matchCard(e) {
 
+
     console.log(e);
+    if(cardHolderTwo !== "") return;
+
     if (this.classList.contains('match') || this.classList.contains('open') || this.classList.contains('show')) return;
 
     this.classList.add('open');
@@ -58,7 +61,7 @@ function matchCard(e) {
     console.log('still here');
     moveCounter++;
     counter.innerHTML = moveCounter;
-    if (cardOne === "") {
+    if (!cardOne ) {
         cardOne = e.target.children[0].className;
         cardHolderOne = this;
     } else {
@@ -75,29 +78,39 @@ function matchCard(e) {
             winnerCounter++;
             cardHolderOne.classList.add('match');
             cardHolderTwo.classList.add('match');
-        } else {
+                cardHolderOne = "";
+                cardHolderTwo = "";
+                cardOne = "";
+                cardTwo = "";
+                if(winnerCounter >= 8){
 
-              cardHolderOne.classList.remove('open');
+                }
+        } else {
+             console.log('dont match');
+              setTimeout(function(){
+                cardHolderOne.classList.remove('open');
                 cardHolderOne.classList.remove('show');
                 cardHolderTwo.classList.remove('open');
                 cardHolderTwo.classList.remove('show');
-                console.log('dont match');
+                cardHolderOne = "";
+                cardHolderTwo = "";
+                cardOne = "";
+                cardTwo = "";
+
+              }, 1000);
+
         }
-
-        cardHolderOne = "";
-        cardHolderTwo = "";
-        cardOne = "";
-        cardTwo = "";
     }
-
 }
-
+// reload page
 function reloadPage() {
+  // sets values to 0 before starting and on reload click
   winnerCounter= 0;
     moveCounter = 0;
     counter.innerHTML = moveCounter;
     const shuffleCards = shuffle(symbols);
     let shuffleDeck = "";
+    //creating the card that will be place in the deck
     for (let i = 0; i < shuffleCards.length; i++) {
 
         shuffleDeck += `<li class="card" id="${i}"><i class="fa fa-${shuffleCards[i]}"></i></li>`;
@@ -105,7 +118,7 @@ function reloadPage() {
     }
 
     deck.innerHTML = shuffleDeck;
-
+     // setting up event listener for each card to listen for any click
     const shuffled = document.querySelectorAll('.card');
     shuffled.forEach(card => card.addEventListener('mousedown', matchCard));
 
@@ -114,6 +127,7 @@ function reloadPage() {
 const restart = document.querySelector('.restart');
 
 restart.addEventListener('mousedown', reloadPage);
+
 
 /*
  * set up the event listener for a card. If a card is clicked:
