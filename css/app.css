@@ -75,8 +75,9 @@ h1 {
     transition: -webkit-transform .5s linear 0s;
 }
 
-.deck .card.show {
+.deck .card.showed {
     font-size: 33px;
+
 }
 
 .deck .card.match {
@@ -95,14 +96,14 @@ h1 {
     margin-bottom: 10px;
 }
 
-.score-panel .stars {
+.score-panel .rating {
     margin: 0;
     padding: 0;
     display: inline-block;
     margin: 0 5px 0 0;
 }
 
-.score-panel .stars li {
+.score-panel .rating li {
     list-style: none;
     display: inline-block;
 }
@@ -111,3 +112,17 @@ h1 {
     float: right;
     cursor: pointer;
 }
+
+.modal-dialog{
+ min-height: calc(100vh - 60px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: auto;
+}
+.modal-title{
+    text-align: center;
+}
+
+
+

@@ -1,9 +1,10 @@
 /*
  * Create a list that holds all of your cards
  */
- let winnerCounter = 0;
+let winnerCounter = 0;
 let deck = document.getElementById('deck');
-
+let myStar = document.querySelector('.rating');
+let score = document.querySelector('.score');
 const symbols = ['bicycle', 'bicycle', 'leaf', 'leaf', 'cube', 'cube', 'anchor', 'anchor', 'paper-plane-o', 'paper-plane-o', 'bolt', 'bolt', 'bomb', 'bomb', 'diamond', 'diamond'];
 
 let moveCounter = 0;
@@ -46,66 +47,98 @@ let cardOne = "";
 let cardHolderOne = "";
 let cardTwo = "";
 let cardHolderTwo = "";
+let starCounter = 0;
 
 function matchCard(e) {
 
 
     console.log(e);
-    if(cardHolderTwo !== "") return;
+    if (cardHolderTwo !== "") return;
 
-    if (this.classList.contains('match') || this.classList.contains('open') || this.classList.contains('show')) return;
+    if (this.classList.contains('match') || this.classList.contains('open') || this.classList.contains('showed')) return;
 
     this.classList.add('open');
-    this.classList.add('show');
+    this.classList.add('showed');
 
     console.log('still here');
-    moveCounter++;
-    counter.innerHTML = moveCounter;
-    if (!cardOne ) {
+    if (!cardOne) {
         cardOne = e.target.children[0].className;
         cardHolderOne = this;
     } else {
+        moveCounter++;
+        counter.innerHTML = moveCounter;
         cardTwo = e.target.children[0].className;
         cardHolderTwo = this;
+
         if (cardHolderOne.id === cardHolderTwo.id) {
             cardHolderTwo = "";
             cardTwo = "";
             return;
         }
+
         console.log(cardTwo);
         if (cardOne === cardTwo) {
             console.log('match');
             winnerCounter++;
             cardHolderOne.classList.add('match');
             cardHolderTwo.classList.add('match');
-                cardHolderOne = "";
-                cardHolderTwo = "";
-                cardOne = "";
-                cardTwo = "";
-                if(winnerCounter >= 1){
-                  $('#myModal').modal('show');
-                }
-        } else {
-             console.log('dont match');
-              setTimeout(function(){
-                cardHolderOne.classList.remove('open');
-                cardHolderOne.classList.remove('show');
-                cardHolderTwo.classList.remove('open');
-                cardHolderTwo.classList.remove('show');
-                cardHolderOne = "";
-                cardHolderTwo = "";
-                cardOne = "";
-                cardTwo = "";
+            cardHolderOne = "";
+            cardHolderTwo = "";
+            cardOne = "";
+            cardTwo = "";
+            if (winnerCounter >= 8) {
+                startRating();
+                score.innerHTML = `With ${moveCounter} moves and ${starCounter} Starts Wooooo!`;
+                $('#myModal').modal('show');
 
-              }, 1000);
+            }
+        } else {
+
+            console.log('dont match');
+            setTimeout(function() {
+                cardHolderOne.classList.remove('open');
+                cardHolderOne.classList.remove('showed');
+                cardHolderTwo.classList.remove('open');
+                cardHolderTwo.classList.remove('showed');
+                cardHolderOne = "";
+                cardHolderTwo = "";
+                cardOne = "";
+                cardTwo = "";
+            }, 1000);
 
         }
     }
 }
+
+function startRating() {
+    console.log('did you fire');
+    if (moveCounter < 20) {
+        starCounter = 3;
+        myStar.innerHTML = `<li><i class="fa fa-star"></i></li>
+     <li><i class="fa fa-star"></i></li>
+     <li><i class="fa fa-star"></i></li>`;
+    } else if (moveCounter < 25) {
+        starCounter = 2;
+        myStar.innerHTML = `<li><i class="fa fa-star"></i></li>
+     <li><i class="fa fa-star"></i></li>
+     <li><i class="fa fa-star-o"></i></li>`
+    } else if (moveCounter < 35) {
+        starCounter = 1;
+        myStar.innerHTML = `<li><i class="fa fa-star"></i></li>
+     <li><i class="fa fa-star-o"></i></li>
+     <li><i class="fa fa-star-o"></i></li>`
+    } else {
+        starCounter = 0;
+        myStar.innerHTML = `<li><i class="fa fa-star-o"></i></li>
+     <li><i class="fa fa-star-o"></i></li>
+     <li><i class="fa fa-star-o"></i></li>`
+    }
+
+}
 // reload page
 function reloadPage() {
-  // sets values to 0 before starting and on reload click
-  winnerCounter= 0;
+    // sets values to 0 before starting and on reload click
+    winnerCounter = 0;
     moveCounter = 0;
     counter.innerHTML = moveCounter;
     const shuffleCards = shuffle(symbols);
@@ -118,7 +151,7 @@ function reloadPage() {
     }
 
     deck.innerHTML = shuffleDeck;
-     // setting up event listener for each card to listen for any click
+    // setting up event listener for each card to listen for any click
     const shuffled = document.querySelectorAll('.card');
     shuffled.forEach(card => card.addEventListener('mousedown', matchCard));
 
@@ -127,7 +160,6 @@ function reloadPage() {
 const restart = document.querySelector('.restart');
 
 restart.addEventListener('mousedown', reloadPage);
-
 
 /*
  * set up the event listener for a card. If a card is clicked:
