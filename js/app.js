@@ -6,7 +6,7 @@ const modalButton = document.querySelector('.btn');
 const playerTimer = document.querySelector('.playerTimer');
 
 restart.addEventListener('mousedown', reloadPage);
-modalButton.addEventListener('click' , reloadPage);
+modalButton.addEventListener('click', reloadPage);
 
 let winnerCounter = 0;
 let moveCounter = 0;
@@ -64,7 +64,7 @@ function shuffle(array) {
 
 //check to see if card are a match or not
 function matchCard(e) {
-    if(timerBool === false){
+    if (timerBool === false) {
         myTimer();
         timerBool = true;
     }
@@ -74,7 +74,7 @@ function matchCard(e) {
 
     this.classList.add('open');
     this.classList.add('showed');
-     //here i check to see if the card is empty to check the first one or continue to the second card.
+    //here i check to see if the card is empty to check the first one or continue to the second card.
     console.log('still here');
     if (!cardOne) {
         cardOne = e.target.children[0].className;
@@ -100,14 +100,14 @@ function matchCard(e) {
             cardHolderOne.classList.add('matching-card');
             cardHolderTwo.classList.add('matching-card');
 
-             setTimeout(function(){
-             cardHolderOne.classList.remove('matching-card');
-            cardHolderTwo.classList.remove('matching-card');
-            cardHolderOne = "";
-            cardHolderTwo = "";
-            cardOne = "";
-            cardTwo = "";
-             } , 500);
+            setTimeout(function() {
+                cardHolderOne.classList.remove('matching-card');
+                cardHolderTwo.classList.remove('matching-card');
+                cardHolderOne = "";
+                cardHolderTwo = "";
+                cardOne = "";
+                cardTwo = "";
+            }, 500);
 
 
             if (winnerCounter >= 8) {
@@ -121,16 +121,16 @@ function matchCard(e) {
 
             console.log('dont match');
 
-               cardHolderOne.classList.add('not-matching');
-               cardHolderTwo.classList.add('not-matching');
+            cardHolderOne.classList.add('not-matching');
+            cardHolderTwo.classList.add('not-matching');
 
-                  setTimeout(function() {
+            setTimeout(function() {
                 cardHolderOne.classList.remove('open');
                 cardHolderOne.classList.remove('showed');
                 cardHolderTwo.classList.remove('open');
                 cardHolderTwo.classList.remove('showed');
                 cardHolderOne.classList.remove('not-matching');
-             cardHolderTwo.classList.remove('not-matching');
+                cardHolderTwo.classList.remove('not-matching');
                 cardHolderOne = "";
                 cardHolderTwo = "";
                 cardOne = "";
@@ -155,7 +155,7 @@ function startRating() {
         myStar.innerHTML = `<li><i class="fa fa-star"></i></li>
      <li><i class="fa fa-star"></i></li>
      <li><i class="fa fa-star-o"></i></li>`
-    } else if (moveCounter < 25 && seconds >  41) {
+    } else if (moveCounter < 25 && seconds > 41) {
         starCounter = 1;
         myStar.innerHTML = `<li><i class="fa fa-star"></i></li>
      <li><i class="fa fa-star-o"></i></li>
@@ -194,24 +194,20 @@ function reloadPage() {
     const shuffled = document.querySelectorAll('.card');
     shuffled.forEach(card => card.addEventListener('mousedown', matchCard));
 
-     myStar.innerHTML = `<li><i class="fa fa-star-o"></i></li>
+    myStar.innerHTML = `<li><i class="fa fa-star-o"></i></li>
      <li><i class="fa fa-star-o"></i></li>
      <li><i class="fa fa-star-o"></i></li>`;
 
 }
 
-    function myTimer(){
+function myTimer() {
 
-         intervalTimer = setInterval(function(){
-         seconds += 1;
-         playerTimer.innerHTML = " Timer : " + seconds;
-       } , 1000);
+    intervalTimer = setInterval(function() {
+        seconds += 1;
+        playerTimer.innerHTML = " Timer : " + seconds;
+    }, 1000);
 
 }
-
-
-
-
 
 /*
  * set up the event listener for a card. If a card is clicked:
