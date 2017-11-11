@@ -3,31 +3,28 @@
 <head>
     <meta charset="utf-8">
     <title>Matching Game</title>
+
     <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-
-<!-- jQuery library -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
-<!-- Latest compiled JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="stylesheet prefetch" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
     <link rel="stylesheet prefetch" href="https://fonts.googleapis.com/css?family=Coda">
     <link rel="stylesheet" href="css/app.css">
 </head>
 <body>
 
-    <div class="container">
+    <div class="container-fluid">
         <header>
             <h1>Matching Game</h1>
         </header>
 
         <section class="score-panel">
         	<ul class="rating">
-        		<li ><i class="fa fa-star-o"></i></li>
-        		<li ><i class="fa fa-star-o"></i></li>
-        		<li ><i class="fa fa-star-o"></i></li>
         	</ul>
 
         	<span class="moves">0</span> Moves
@@ -35,14 +32,12 @@
             <div class="restart">
         		<i class="fa fa-repeat"></i>
         	</div>
+            <span class="playerTimer">Timer</span>
         </section>
 
         <ul class="deck" id="deck">
 
         </ul>
-
-      <!-- Trigger the modal with a button -->
-<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
 
 <!-- Modal -->
 <div id="myModal" class="modal fade" role="dialog">

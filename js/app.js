@@ -1,14 +1,32 @@
 /*
  * Create a list that holds all of your cards
  */
+const restart = document.querySelector('.restart');
+const modalButton = document.querySelector('.btn');
+const playerTimer = document.querySelector('.playerTimer');
+
+restart.addEventListener('mousedown', reloadPage);
+modalButton.addEventListener('click' , reloadPage);
+
 let winnerCounter = 0;
+let moveCounter = 0;
 let deck = document.getElementById('deck');
 let myStar = document.querySelector('.rating');
 let score = document.querySelector('.score');
 const symbols = ['bicycle', 'bicycle', 'leaf', 'leaf', 'cube', 'cube', 'anchor', 'anchor', 'paper-plane-o', 'paper-plane-o', 'bolt', 'bolt', 'bomb', 'bomb', 'diamond', 'diamond'];
 
-let moveCounter = 0;
 const counter = document.querySelector('.moves');
+
+
+let cardOne = "";
+let cardHolderOne = "";
+let cardTwo = "";
+let cardHolderTwo = "";
+let starCounter = 0;
+let timerBool = false;
+let seconds = "";
+let intervalTimer = "";
+
 reloadPage();
 
 /*
@@ -43,23 +61,20 @@ function shuffle(array) {
     return arr;
 }
 
-let cardOne = "";
-let cardHolderOne = "";
-let cardTwo = "";
-let cardHolderTwo = "";
-let starCounter = 0;
 
+//check to see if card are a match or not
 function matchCard(e) {
-
-
-    console.log(e);
+    if(timerBool === false){
+        myTimer();
+        timerBool = true;
+    }
+    //logic to check  if card have not been click to not created a double point or error in game
     if (cardHolderTwo !== "") return;
-
     if (this.classList.contains('match') || this.classList.contains('open') || this.classList.contains('showed')) return;
 
     this.classList.add('open');
     this.classList.add('showed');
-
+     //here i check to see if the card is empty to check the first one or continue to the second card.
     console.log('still here');
     if (!cardOne) {
         cardOne = e.target.children[0].className;
@@ -82,47 +97,65 @@ function matchCard(e) {
             winnerCounter++;
             cardHolderOne.classList.add('match');
             cardHolderTwo.classList.add('match');
+            cardHolderOne.classList.add('matching-card');
+            cardHolderTwo.classList.add('matching-card');
+
+             setTimeout(function(){
+             cardHolderOne.classList.remove('matching-card');
+            cardHolderTwo.classList.remove('matching-card');
             cardHolderOne = "";
             cardHolderTwo = "";
             cardOne = "";
             cardTwo = "";
+             } , 500);
+
+
             if (winnerCounter >= 8) {
                 startRating();
-                score.innerHTML = `With ${moveCounter} moves and ${starCounter} Starts Wooooo!`;
+                score.innerHTML = `With ${moveCounter} moves ${starCounter} Starts and ${seconds}  ${seconds < 31 && moveCounter < 14 ? "Expert" : moveCounter < 20 && seconds < 36 ? "Good" : "Noob"}`;
                 $('#myModal').modal('show');
+                clearInterval(intervalTimer);
 
             }
         } else {
 
             console.log('dont match');
-            setTimeout(function() {
+
+               cardHolderOne.classList.add('not-matching');
+               cardHolderTwo.classList.add('not-matching');
+
+                  setTimeout(function() {
                 cardHolderOne.classList.remove('open');
                 cardHolderOne.classList.remove('showed');
                 cardHolderTwo.classList.remove('open');
                 cardHolderTwo.classList.remove('showed');
+                cardHolderOne.classList.remove('not-matching');
+             cardHolderTwo.classList.remove('not-matching');
                 cardHolderOne = "";
                 cardHolderTwo = "";
                 cardOne = "";
                 cardTwo = "";
             }, 1000);
 
+
         }
     }
 }
 
+//setting up the start rating for the star number depending on the moves it took the player to finish the game
 function startRating() {
     console.log('did you fire');
-    if (moveCounter < 20) {
+    if (moveCounter < 16 && seconds < 31) {
         starCounter = 3;
         myStar.innerHTML = `<li><i class="fa fa-star"></i></li>
      <li><i class="fa fa-star"></i></li>
      <li><i class="fa fa-star"></i></li>`;
-    } else if (moveCounter < 25) {
+    } else if (moveCounter < 20 && seconds < 36) {
         starCounter = 2;
         myStar.innerHTML = `<li><i class="fa fa-star"></i></li>
      <li><i class="fa fa-star"></i></li>
      <li><i class="fa fa-star-o"></i></li>`
-    } else if (moveCounter < 35) {
+    } else if (moveCounter < 25 && seconds >  41) {
         starCounter = 1;
         myStar.innerHTML = `<li><i class="fa fa-star"></i></li>
      <li><i class="fa fa-star-o"></i></li>
@@ -141,6 +174,12 @@ function reloadPage() {
     winnerCounter = 0;
     moveCounter = 0;
     counter.innerHTML = moveCounter;
+    seconds = 0;
+    playerTimer.innerHTML = " Timer : " + seconds;
+    timerBool = false;
+    // clearing the interval function i set to get each second
+    clearInterval(intervalTimer);
+
     const shuffleCards = shuffle(symbols);
     let shuffleDeck = "";
     //creating the card that will be place in the deck
@@ -155,11 +194,24 @@ function reloadPage() {
     const shuffled = document.querySelectorAll('.card');
     shuffled.forEach(card => card.addEventListener('mousedown', matchCard));
 
+     myStar.innerHTML = `<li><i class="fa fa-star-o"></i></li>
+     <li><i class="fa fa-star-o"></i></li>
+     <li><i class="fa fa-star-o"></i></li>`;
+
 }
 
-const restart = document.querySelector('.restart');
+    function myTimer(){
 
-restart.addEventListener('mousedown', reloadPage);
+         intervalTimer = setInterval(function(){
+         seconds += 1;
+         playerTimer.innerHTML = " Timer : " + seconds;
+       } , 1000);
+
+}
+
+
+
+
 
 /*
  * set up the event listener for a card. If a card is clicked:
