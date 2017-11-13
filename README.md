@@ -2,7 +2,7 @@
 
 ## How to get started
 
- To get started download of clone the repo extract the zip file and open index.html.
+ To get started download zip file or clone the repo extract the zip file and open index.html.
 
 ## Instructions
 
