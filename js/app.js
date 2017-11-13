@@ -26,8 +26,17 @@ let starCounter = 0;
 let timerBool = false;
 let seconds = "";
 let intervalTimer = "";
+//setting up audio for match and don't match as well.
+const matchSound = new Audio('audio/matcher.wav');
+const wrongSound = new Audio('audio/wrong-buzzer.wav');
+const winSound = new Audio('audio/tada.flac');
+// setting volume so it does not sound to loud.
+matchSound.volume = 0.2;
+wrongSound.volume = 0.1;
 
 reloadPage();
+
+
 
 /*
  * Display the cards on the page
@@ -99,6 +108,8 @@ function matchCard(e) {
             cardHolderTwo.classList.add('match');
             cardHolderOne.classList.add('matching-card');
             cardHolderTwo.classList.add('matching-card');
+            matchSound.currentTime = 0;
+            matchSound.play();
 
             setTimeout(function() {
                 cardHolderOne.classList.remove('matching-card');
@@ -111,8 +122,8 @@ function matchCard(e) {
 
 
             if (winnerCounter >= 8) {
-                startRating();
-                score.innerHTML = `With ${moveCounter} moves ${starCounter} Starts and ${seconds}  ${seconds < 31 && moveCounter < 14 ? "Expert" : moveCounter < 20 && seconds < 36 ? "Good" : "Noob"}`;
+                winSound.play();
+                score.innerHTML = `With ${moveCounter} moves ${starCounter} Starts and ${seconds} seconds ${moveCounter < 16 && seconds < 31 ? "Expert" : moveCounter < 20 && seconds < 35  ? "Good" : "Need Pratice" }`;
                 $('#myModal').modal('show');
                 clearInterval(intervalTimer);
 
@@ -123,6 +134,8 @@ function matchCard(e) {
 
             cardHolderOne.classList.add('not-matching');
             cardHolderTwo.classList.add('not-matching');
+            wrongSound.currentTime = 0;
+            wrongSound.play();
 
             setTimeout(function() {
                 cardHolderOne.classList.remove('open');
@@ -194,15 +207,16 @@ function reloadPage() {
     const shuffled = document.querySelectorAll('.card');
     shuffled.forEach(card => card.addEventListener('mousedown', matchCard));
 
-    myStar.innerHTML = `<li><i class="fa fa-star-o"></i></li>
-     <li><i class="fa fa-star-o"></i></li>
-     <li><i class="fa fa-star-o"></i></li>`;
+    myStar.innerHTML = `<li><i class="fa fa-star"></i></li>
+     <li><i class="fa fa-star"></i></li>
+     <li><i class="fa fa-star"></i></li>`;
 
 }
 
 function myTimer() {
 
     intervalTimer = setInterval(function() {
+        startRating();
         seconds += 1;
         playerTimer.innerHTML = " Timer : " + seconds;
     }, 1000);

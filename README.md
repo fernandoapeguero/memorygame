@@ -1,20 +1,17 @@
 # Memory Game Project
 
-## Table of Contents
+## How to get started
 
-* [Instructions](#instructions)
-* [Contributing](#contributing)
+ To get started download of clone the repo extract the zip file and open index.html.
 
 ## Instructions
 
-The starter project has some HTML and CSS styling to display a static version of the Memory Game project. You'll need to convert this project from a static project to an interactive one. This will require modifying the HTML and CSS files, but primarily the JavaScript file.
+	** Match the card **
+	 **finish as fast and in the less move possible.**
+	 **Timer**
+- **Expert** < 31 seconds and 15 moves
+- **Good** < 36 seconds and 19 moves
+- **need more practice** > 36 seconds.
 
-To get started, open `js/app.js` and start building out the app's functionality
+_hope you enjoy the game._
 
-For specific, detailed instructions, look at the project instructions in the [Udacity Classroom](https://classroom.udacity.com/me).
-
-## Contributing
-
-This repository is the starter code for _all_ Udacity students. Therefore, we most likely will not accept pull requests.
-
-For details, check out [CONTRIBUTING.md](CONTRIBUTING.md).
