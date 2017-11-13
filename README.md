@@ -6,9 +6,9 @@
 
 ## Instructions
 
-	** Match the card **
-	 **finish as fast and in the less move possible.**
-	 **Timer**
+	 Match the card
+	 finish as fast and in the less move as possible.
+	 Timer
 - **Expert** < 31 seconds and 15 moves
 - **Good** < 36 seconds and 19 moves
 - **need more practice** > 36 seconds.
