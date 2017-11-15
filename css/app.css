@@ -21,11 +21,12 @@ body {
     font-family: 'Coda', cursive;
 }
 
-.container-fluid{
-
+.container{
+    display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+
 
 }
 
@@ -50,6 +51,7 @@ h1 {
     justify-content: space-between;
     align-items: center;
     margin: 0 0 3em;
+    margin: auto;
 }
 
 .deck  .card {
@@ -94,13 +96,14 @@ h1 {
  */
 
 .score-panel {
+
     text-align: left;
     width: 345px;
     margin-bottom: 10px;
 }
 
 .score-panel .rating {
-    margin: ;
+    margin: 0;
     padding: 0;
     display: inline-block;
     margin: 0 5px 0 0;
@@ -158,6 +161,3 @@ h1 {
 }
 
 
-@media on screen( max-width: 700px){
-
-}

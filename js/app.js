@@ -199,7 +199,7 @@ function reloadPage() {
     //creating the card that will be place in the deck
     for (let i = 0; i < shuffleCards.length; i++) {
 
-        shuffleDeck += `<li class="card " id="${i}"><i class="fa fa-${shuffleCards[i]}"></i></li>`;
+        shuffleDeck += `<li class="card" id="${i}"><i class="fa fa-${shuffleCards[i]}"></i></li>`;
 
     }
 
