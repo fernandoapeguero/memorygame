@@ -164,12 +164,12 @@ function startRating() {
         myStar.innerHTML = `<li><i class="fa fa-star"></i></li>
      <li><i class="fa fa-star"></i></li>
      <li><i class="fa fa-star"></i></li>`;
-    } else if (moveCounter < 18 && seconds < 36) {
+    } else if (moveCounter < 17 && seconds < 36) {
         starCounter = 2;
         myStar.innerHTML = `<li><i class="fa fa-star"></i></li>
      <li><i class="fa fa-star"></i></li>
      <li><i class="fa fa-star-o"></i></li>`
-    } else if (moveCounter > 22  && seconds > 41) {
+    } else if ( moveCounter > 17 ||  seconds > 36) {
         starCounter = 1;
         myStar.innerHTML = `<li><i class="fa fa-star"></i></li>
      <li><i class="fa fa-star-o"></i></li>
@@ -212,8 +212,8 @@ function reloadPage() {
 function myTimer() {
 
     intervalTimer = setInterval(function() {
-        startRating();
         seconds += 1;
+         startRating();
         playerTimer.innerHTML = " Timer : " + seconds;
     }, 1000);
 
