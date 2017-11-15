@@ -21,7 +21,7 @@ body {
     font-family: 'Coda', cursive;
 }
 
-.container{
+.container-fluid{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -160,4 +160,26 @@ h1 {
 
 }
 
+@media screen and (max-width: 480px){
+
+    .deck{
+        width: 320px;
+       min-height: 320px;
+
+    }
+
+    .deck .card {
+        width: 56px;
+        height: 56px;
+    }
+
+    h1{
+        font-size: 25px;
+    }
+
+    .score-panel{
+
+        width: 250px;
+    }
+}
 
