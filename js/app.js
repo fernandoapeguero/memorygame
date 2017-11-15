@@ -159,24 +159,19 @@ function matchCard(e) {
 //setting up the start rating for the star number depending on the moves it took the player to finish the game
 function startRating() {
     console.log('did you fire');
-    if (moveCounter < 16 && seconds < 31) {
+    if (moveCounter < 14 && seconds < 31) {
         starCounter = 3;
         myStar.innerHTML = `<li><i class="fa fa-star"></i></li>
      <li><i class="fa fa-star"></i></li>
      <li><i class="fa fa-star"></i></li>`;
-    } else if (moveCounter < 20 && seconds < 36) {
+    } else if (moveCounter < 18 && seconds < 36) {
         starCounter = 2;
         myStar.innerHTML = `<li><i class="fa fa-star"></i></li>
      <li><i class="fa fa-star"></i></li>
      <li><i class="fa fa-star-o"></i></li>`
-    } else if (moveCounter < 25 && seconds > 41) {
+    } else if (moveCounter > 22  && seconds > 41) {
         starCounter = 1;
         myStar.innerHTML = `<li><i class="fa fa-star"></i></li>
-     <li><i class="fa fa-star-o"></i></li>
-     <li><i class="fa fa-star-o"></i></li>`
-    } else {
-        starCounter = 0;
-        myStar.innerHTML = `<li><i class="fa fa-star-o"></i></li>
      <li><i class="fa fa-star-o"></i></li>
      <li><i class="fa fa-star-o"></i></li>`
     }
