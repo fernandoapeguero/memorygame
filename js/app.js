@@ -101,6 +101,7 @@ function matchCard(e) {
         }
 
         console.log(cardTwo);
+        //checking if card match with internal logic for winning the game.
         if (cardOne === cardTwo) {
             console.log('match');
             winnerCounter++;
@@ -110,7 +111,7 @@ function matchCard(e) {
             cardHolderTwo.classList.add('matching-card');
             matchSound.currentTime = 0;
             matchSound.play();
-
+           //timer to remove animation after a second of applying it
             setTimeout(function() {
                 cardHolderOne.classList.remove('matching-card');
                 cardHolderTwo.classList.remove('matching-card');
@@ -120,23 +121,23 @@ function matchCard(e) {
                 cardTwo = "";
             }, 500);
 
-
+           // win logic to be able to win the game after finishing matching all the cards.
             if (winnerCounter >= 8) {
                 winSound.play();
                 score.innerHTML = `With ${moveCounter} moves ${starCounter} Starts and ${seconds} seconds ${moveCounter < 16 && seconds < 31 ? "Expert" : moveCounter < 20 && seconds < 35  ? "Good" : "Need Pratice" }`;
                 $('#myModal').modal('show');
                 clearInterval(intervalTimer);
-
             }
-        } else {
 
+        } else {
+          //checking if cards did not match to remove the animation and other clases apply to it before
             console.log('dont match');
 
             cardHolderOne.classList.add('not-matching');
             cardHolderTwo.classList.add('not-matching');
             wrongSound.currentTime = 0;
             wrongSound.play();
-
+          //timer to remove the classes apply to the card after a second.
             setTimeout(function() {
                 cardHolderOne.classList.remove('open');
                 cardHolderOne.classList.remove('showed');
@@ -198,7 +199,7 @@ function reloadPage() {
     //creating the card that will be place in the deck
     for (let i = 0; i < shuffleCards.length; i++) {
 
-        shuffleDeck += `<li class="card" id="${i}"><i class="fa fa-${shuffleCards[i]}"></i></li>`;
+        shuffleDeck += `<li class="card " id="${i}"><i class="fa fa-${shuffleCards[i]}"></i></li>`;
 
     }
 

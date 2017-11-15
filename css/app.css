@@ -22,10 +22,10 @@ body {
 }
 
 .container-fluid{
-    display: flex;
+
     justify-content: center;
     align-items: center;
-    flex-direction: column;
+
 }
 
 h1 {
@@ -157,4 +157,6 @@ h1 {
 }
 
 
+@media on screen( max-width: 700px){
 
+}
