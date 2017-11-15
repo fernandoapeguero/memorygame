@@ -12,7 +12,7 @@
 - **Expert** < 31 seconds and 15 moves
 - **Good** < 36 seconds and 19 moves
 - **need more practice** > 36 seconds.
-                                      #Can You Beat Me 
+                                      # Can You Beat Me 
 ![beat-me](https://user-images.githubusercontent.com/25759298/32863782-a6914c34-ca2a-11e7-9f70-e6910dd5cc91.PNG)
 
 _hope you enjoy the game._
